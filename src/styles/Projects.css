@@ -1,0 +1,30 @@
+.projects-section {
+  padding: 6rem 1.5rem;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.projects-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background: #E04D4D;
+  height: 250px; /* Increased height for better visibility */
+  width: calc(33.333% - 1rem);
+  border-radius: 12px;
+  
+  /* Initial state: hidden for GSAP */
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+@media (max-width: 768px) {
+  .card { width: calc(50% - 0.75rem); }
+}
+@media (max-width: 480px) {
+  .card { width: 100%; }
+}
