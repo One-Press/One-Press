@@ -1,0 +1,44 @@
+name: Build & Deploy One-Press to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Build project
+      - name: Build React + Vite project
+        run: npm run build
+
+      # 5. Deploy dist/ to Hostinger via SCP
+      - name: Deploy to Hostinger
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          port: 22
+          source: "dist/*"
+          target: ${{ secrets.HOSTINGER_PATH }}
+
+      # Optional: Clean up
+      - name: List deployed files
+        run: ssh -o StrictHostKeyChecking=no -i <(echo "${{ secrets.HOSTINGER_SSH_KEY }}") ${{ secrets.HOSTINGER_USERNAME }}@${{ secrets.HOSTINGER_HOST }} "ls -la ${{ secrets.HOSTINGER_PATH }}"
