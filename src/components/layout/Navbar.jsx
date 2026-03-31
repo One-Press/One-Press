@@ -10,20 +10,32 @@ function Navbar() {
   const location = useLocation();
 
   const handleNavigation = (item) => {
-    const target = item.toLowerCase();
-    if (item === "Home") navigate("/");
-    else if (item === "About") navigate("/about");
-    else if (item === "Contact") navigate("/contact");
-    else if (item === "Services" || item === "Projects") {
-      if (location.pathname !== "/") {
-        navigate("/");
-        setTimeout(() => scrollSection(target), 150);
-      } else {
-        scrollSection(target);
-      }
+  const target = item.toLowerCase();
+  
+  if (item === "Home") {
+    navigate("/");
+  } 
+  else if (item === "About") {
+    navigate("/about");
+  } 
+  else if (item === "Contact") {
+    navigate("/contact");
+  } 
+  // --- UPDATE THIS SECTION ---
+  else if (item === "Services") {
+    navigate("/services"); // Now works exactly like About
+  } 
+  // ---------------------------
+  else if (item === "Projects") {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => scrollSection(target), 150);
+    } else {
+      scrollSection(target);
     }
-    setIsOpen(false);
-  };
+  }
+  setIsOpen(false);
+};
 
   const scrollSection = (id) => {
     scroller.scrollTo(id, {

@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Column 2: Information Links */}
+        {/* Column 2 */}
         <div>
           <h3 className="text-white font-semibold mb-6">Information</h3>
           <ul className="space-y-4">
@@ -32,7 +32,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Column 3: Contact Details */}
+        {/* Column 3 */}
         <div>
           <h3 className="text-white font-semibold mb-6">Contact Us</h3>
           <p className="mb-2">Valentin, Street Road 24, New York, USA – 67452</p>
@@ -40,12 +40,11 @@ export default function Footer() {
           <p className="hover:text-[#7CFC00] transition cursor-pointer">onepresssolutions@gmail.com</p>
         </div>
 
-        {/* Column 4: Project CTA - Reusable Button Added Here */}
+        {/* Column 4 */}
         <div className="bg-[#1a1a1a] p-8 rounded-3xl flex flex-col items-start">
           <h3 className="text-white text-xl font-bold mb-8">Have a project in your mind?</h3>
           
           <div className="mb-8 scale-75 origin-left"> 
-            {/* We scale it slightly to fit the footer column padding nicely */}
             <Button label="Contact Us ↗" href="/contact" />
           </div>
 
@@ -55,7 +54,7 @@ export default function Footer() {
 
       </div>
 
-      {/* Footer Bottom */}
+      {/* Bottom */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-sm">© 2022 – 2026 | All rights reserved by One Press</p>
         
