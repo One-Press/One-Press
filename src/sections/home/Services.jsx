@@ -1,105 +1,141 @@
-import React, { useState } from "react";
-import Button from "@/components/ui/Button"; 
-export default function Services() {
-  const services = [
-    {
-      id: "01",
-      title: "Web Development",
-      desc: "We build fast, responsive, and modern websites using React, Vite, and Tailwind CSS.",
-      image: "/servicesImages/web.webp",
-    },
-    {
-      id: "02",
-      title: "UI/UX Design",
-      desc: "We create intuitive and beautiful interfaces that users love to interact with.",
-      image: "/servicesImages/uiux.webp",
-    },
-    {
-      id: "03",
-      title: "Digital Marketing",
-      desc: "We boost your brand presence online with effective marketing strategies.",
-      image: "/servicesImages/digital-marketing.webp",
-    },
-    {
-      id: "04",
-      title: "Branding",
-      desc: "We develop strong brand identities that resonate with your audience.",
-      image: "/servicesImages/branding.webp",
-    },
-  ];
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FiArrowUpRight } from "react-icons/fi";
 
-  const [activeImage, setActiveImage] = useState("/servicesImages/web.webp");
+gsap.registerPlugin(ScrollTrigger);
+
+const SERVICES = [
+  { 
+    id: "01", 
+    title: "Web & Mobile Development", 
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    id: "02", 
+    title: "Interaction Design", 
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    id: "03", 
+    title: "Digital Marketing", 
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" 
+  },
+  { 
+    id: "04", 
+    title: "Branding and Strategy", 
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" 
+  },
+];
+
+const DESC = "We create products, brands, apps & websites for the companies all around the world class digital products";
+
+export default function ServicesSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Entrance animation for the rows
+      gsap.from(".service-row", {
+        opacity: 0,
+        x: 40,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+
+      // Subtle floating effect for the image
+      gsap.to(".image-container", {
+        y: -15,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleHover = (index) => {
+    if (index === activeIndex) return;
+    setActiveIndex(index);
+    gsap.fromTo(imageRef.current, 
+      { opacity: 0.6, scale: 0.95 }, 
+      { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+    );
+  };
 
   return (
-    
-    <section id="services" className="relative py-20 bg-black text-white px-8 md:px-20">
-
-      {/* TOP HEADER ROW */}
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 mb-12">
-        {/* Left: Heading */}
-        <div className="lg:w-1/4 text-left">
-          <h2 className="text-4xl font-bold">
-            Solution we <span className="text-green-500">provide</span>
-          </h2>
-        </div>
-
-        {/* Center: Description */}
-        <div className="lg:w-2/4 text-center">
-          <p className="text-gray-300 text-lg md:text-xl">
-            With every single one of our clients we bring forth a deep passion
-            for creative problem solving, innovations, forward-thinking brands, and pushing boundaries.
-          </p>
-        </div>
-
-        {/* Right: Reusable GSAP Button */}
-        <div className="lg:w-1/4 flex justify-end">
-          <Button label="View All Services" />
-        </div>
-      </div>
-
-      {/* MAIN SERVICES GRID */}
-      <div className="grid lg:grid-cols-[30%_70%] gap-12 items-start">
-
-        {/* LEFT IMAGE */}
-        <div className="sticky top-28">
-          <img
-            src={activeImage}
-            alt="Service"
-            className="w-[250px] md:w-[300px] rounded-lg object-cover shadow-lg transition-all duration-300"
-          />
-        </div>
-
-        {/* RIGHT CONTENT */}
-        <div className="flex flex-col gap-8">
-
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="flex flex-col gap-2 cursor-pointer"
-              onMouseEnter={() => setActiveImage(service.image)}
-              onMouseLeave={() => setActiveImage("/servicesImages/web.webp")}
+    <section ref={sectionRef} className="bg-[#0a0a0a] text-white py-20 px-6 md:px-12 overflow-hidden min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        {/* LEFT SIDE: Image Preview Area */}
+        <div className="hidden lg:flex lg:col-span-4 justify-center items-center relative">
+          <div className="image-container relative w-full max-w-[280px]">
+            
+            {/* NEON GREEN MARKER (Positioned UNDER the card) */}
+            <div 
+              className="absolute -bottom-6 -left-10 w-44 h-16 bg-[#ccff00] shadow-[0_0_30px_rgba(204,255,0,0.2)] z-0"
+              style={{ transform: "rotate(-15deg)" }}
             >
-              {/* Horizontal line */}
-              <div className="w-full h-[1px] bg-gray-600"></div>
+               <div className="w-1.5 h-1.5 bg-black rounded-full absolute right-4 top-1/2 -translate-y-1/2"></div>
+            </div>
 
-              {/* Service Row */}
-              <div className="grid grid-cols-[1fr_1fr] gap-6 items-center py-2">
-                <h3 className="text-2xl font-bold">
-                  <span className="opacity-50 mr-2">{service.id}</span>
-                  {service.title}
-                </h3>
-                <p className="text-gray-300">{service.desc}</p>
+            {/* ACTUAL IMAGE CARD */}
+            <div 
+              ref={imageRef}
+              className="relative z-10 w-full aspect-[3/4] overflow-hidden rounded-sm border border-white/10 shadow-2xl"
+              style={{ transform: "rotate(-8deg)" }}
+            >
+              <img 
+                src={SERVICES[activeIndex].image} 
+                alt="Service Preview" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* SMALL ACCENT DOT */}
+            <div className="absolute -right-8 bottom-1/4 w-2 h-2 bg-[#ccff00] rounded-full z-10"></div>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: Interactive Services List */}
+        <div className="lg:col-span-8 flex flex-col">
+          {SERVICES.map((item, index) => (
+            <div
+              key={item.id}
+              onMouseEnter={() => handleHover(index)}
+              className="service-row group flex items-start py-9 border-t border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors"
+            >
+              <span className="text-gray-500 font-bold text-lg mr-8 md:mr-16 pt-1">
+                {item.id}
+              </span>
+
+              <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:translate-x-2 transition-transform duration-300">
+                  {item.title}
+                </h2>
+                <p className="text-gray-400 text-sm leading-relaxed max-w-sm pt-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                  {DESC}
+                </p>
+              </div>
+
+              <div className="ml-4">
+                <FiArrowUpRight className="text-4xl text-gray-500 group-hover:text-white group-hover:rotate-45 transition-all duration-300" />
               </div>
             </div>
           ))}
-
-          {/* Optional: Line after last service */}
-          <div className="w-full h-[1px] bg-gray-600"></div>
-
+          <div className="border-t border-white/10 w-full"></div>
         </div>
 
       </div>
-
     </section>
   );
 }
