@@ -6,6 +6,7 @@ import ContactPage from "./pages/ContactPage";
 import Hero from "./components/Hero/Hero";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import ServicesPage from "./pages/ServicesPage";
+import ProjectPage from "./pages/ProjectPage";
 // We create a wrapper component to access the location hook
 function AppContent() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function AppContent() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/projects" element={<ProjectPage />} />
         </Routes>
       </div>
     </>
