@@ -4,26 +4,31 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
   const navItems = ["Home", "Services", "Projects", "About", "Contact"];
+
+  const servicesDropdown = [
+    { name: "Branding & Identity", id: "branding" },
+    { name: "Web Design & UI/UX", id: "uiux" },
+    { name: "Web Development", id: "dev" },
+    { name: "Digital Marketing", id: "marketing" },
+    { name: "E-commerce Solutions", id: "ecommerce" }
+  ];
+
   const navigate = useNavigate();
 
   const handleNavigation = (item) => {
-    if (item === "Home") {
-      navigate("/");
-    } 
-    else if (item === "Services") {
-      navigate("/services");
-    } 
-    else if (item === "Projects") {
-      navigate("/projects"); // ✅ FIXED
-    } 
-    else if (item === "About") {
-      navigate("/about");
-    } 
-    else if (item === "Contact") {
-      navigate("/contact");
-    }
+    if (item === "Home") navigate("/");
+    else if (item === "Services") navigate("/services");
+    else if (item === "Projects") navigate("/projects");
+    else if (item === "About") navigate("/about");
+    else if (item === "Contact") navigate("/contact");
 
+    setIsOpen(false);
+  };
+
+  const handleServiceClick = (id) => {
+    navigate(`/services#${id}`);
     setIsOpen(false);
   };
 
@@ -51,20 +56,54 @@ function Navbar() {
         {/* 🔹 Desktop Nav */}
         <div className="hidden md:flex justify-center items-center">
           <ul className="flex items-center gap-8 lg:gap-10 font-semibold text-gray-600">
+            
             {navItems.map((item) => (
               <li
                 key={item}
-                onClick={() => handleNavigation(item)}
-                className="cursor-pointer hover:text-blue-600 transition-colors duration-200 whitespace-nowrap text-base lg:text-lg"
+                className="relative group cursor-pointer whitespace-nowrap text-base lg:text-lg"
               >
-                {item}
+                {/* 
+                    Main Navigation Link: 
+                    - Clicking the text triggers handleNavigation (navigates to the page)
+                */}
+                <span 
+                  onClick={() => handleNavigation(item)}
+                  className="hover:text-blue-600 transition-colors duration-200"
+                >
+                  {item}
+                </span>
+
+                {/* 🔽 SERVICES DROPDOWN */}
+                {item === "Services" && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300">
+                    
+                    <div className="bg-white shadow-xl border border-gray-100 rounded-xl py-4 w-64">
+                      {servicesDropdown.map((service, i) => (
+                        <div
+                          key={i}
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent parent li click
+                            handleServiceClick(service.id);
+                          }}
+                          className="px-5 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition cursor-pointer text-sm font-medium"
+                        >
+                          {service.name}
+                        </div>
+                      ))}
+                    </div>
+
+                  </div>
+                )}
+
               </li>
             ))}
+
           </ul>
         </div>
 
         {/* 🔹 Right Side */}
         <div className="flex justify-end items-center">
+          
           {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
@@ -73,12 +112,6 @@ function Navbar() {
             {isOpen ? <FiX /> : <FiMenu />}
           </button>
 
-          {/* Optional CTA */}
-          {/* 
-          <button className="hidden md:block bg-[#111c70] text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-blue-800 transition-all">
-            Get Started
-          </button> 
-          */}
         </div>
       </div>
       
@@ -88,14 +121,29 @@ function Navbar() {
           {navItems.map((item) => (
             <li 
               key={item} 
-              onClick={() => handleNavigation(item)} 
-              className="text-xl cursor-pointer"
+              className="text-xl cursor-pointer text-center"
             >
-              {item}
+              <div onClick={() => handleNavigation(item)}>{item}</div>
+              
+              {/* Mobile Sub-menu for Services */}
+              {item === "Services" && (
+                <ul className="flex flex-col items-center gap-3 mt-4 font-medium text-gray-500">
+                  {servicesDropdown.map((service, i) => (
+                    <li 
+                      key={i} 
+                      onClick={() => handleServiceClick(service.id)}
+                      className="text-base hover:text-blue-600 transition"
+                    >
+                      {service.name}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
       </div>
+
     </nav>
   );
 }

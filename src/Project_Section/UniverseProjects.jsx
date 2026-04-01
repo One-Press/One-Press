@@ -1,104 +1,109 @@
 import React, { useState } from "react";
 
 const projects = [
-  {
-    id: 1,
-    name: "LuxeStay Real Estate",
-    type: "Web Development",
-    description:
-      "Developed a custom property management system with an integrated 3D virtual tour API, increasing lead conversion by 35% for a premium New York realtor.",
-    color: "bg-[#7CFC00]", // Matching your Neon Green brand
-  },
-  {
-    id: 2,
-    name: "CryptoVault Wallet",
-    type: "UI/UX Design",
-    description:
-      "A high-security FinTech redesign focusing on simplified asset management. We reduced transaction abandonment rates by 50% through intuitive user flows.",
-    color: "bg-blue-500",
-  },
-  {
-    id: 3,
-    name: "Aura Skincare Global",
-    type: "E-Commerce",
-    description:
-      "Scaled a luxury Shopify Plus store globally. Implemented advanced SEO and Meta Ads strategy resulting in a 4.5x Return on Ad Spend (ROAS).",
-    color: "bg-pink-500",
-  },
-  {
-    id: 4,
-    name: "Zenith Tech Identity",
-    type: "Branding",
-    description:
-      "Engineered a complete visual language for an AI startup, from logo architecture to pitch deck design, helping them secure $12M in Series A funding.",
-    color: "bg-amber-400",
-  },
+  { id: 1, name: "LuxeStay Real Estate", type: "Web Development", description: "Custom property management website with integrated 3D virtual tours. Increased lead conversion by 35%.", color: "bg-[#7CFC00]" },
+  { id: 2, name: "CryptoVault Wallet", type: "UI/UX Design", description: "Redesigned a high-security FinTech wallet to simplify asset management. Reduced transaction abandonment by 50%.", color: "bg-blue-500" },
+  { id: 3, name: "Aura Skincare Global", type: "E-Commerce", description: "Luxury Shopify Plus store with advanced SEO & Meta Ads, achieving 4.5x ROAS globally.", color: "bg-pink-500" },
+  { id: 4, name: "Zenith Tech Identity", type: "Branding", description: "Complete branding for AI startup: logo, pitch deck, and visual language. Helped secure $12M Series A.", color: "bg-amber-400" },
+  { id: 5, name: "EcoShop Online", type: "Digital Marketing", description: "Full-funnel eCommerce marketing campaign for EcoShop. Increased online sales by 60% in 3 months.", color: "bg-purple-500" },
+  { id: 6, name: "FitLife App", type: "Web Development", description: "Developed a fitness subscription platform with real-time tracking and custom dashboards.", color: "bg-red-500" },
+  { id: 7, name: "TravelEase", type: "UI/UX Design", description: "Redesigned travel booking app with improved flows, reducing drop-offs by 40%.", color: "bg-teal-400" },
+  { id: 8, name: "BrandNova", type: "Branding", description: "End-to-end branding for a startup: logo, brand guidelines, and pitch deck, boosting investor interest.", color: "bg-orange-400" },
 ];
 
 export default function UniverseProjects() {
   const [active, setActive] = useState(null);
 
+  const stars = Array.from({ length: 120 }, () => ({
+    top: Math.random() * 100 + "%",
+    left: Math.random() * 100 + "%",
+    size: Math.random() * 2 + "px",
+    delay: Math.random() * 3 + "s",
+  }));
+
   return (
-    <div className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_center,_#0b0f2a,_#02030a)] text-white font-sans">
+    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black text-white font-sans">
       
-      {/* 🌞 Center (Sun / Agency Core) */}
-      <div className="absolute text-center z-10">
-        <h1 className="text-4xl font-black tracking-tighter uppercase italic">
-          ONE <span className="text-[#7CFC00]">PRESS</span>
-        </h1>
-        <p className="text-[10px] font-mono uppercase tracking-[0.3em] opacity-60 mt-2">
-          Dominating the Digital Galaxy
-        </p>
+      {/* 🌌 Galaxy Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1543722530-d2c3201371e7?q=80&w=2000&auto=format&fit=crop"
+          alt="Deep Space Galaxy"
+          className="w-full h-full object-cover object-center scale-110 opacity-60"
+          style={{ animation: "galaxy-float 20s ease-in-out infinite" }}
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_40%,_black_90%)]" />
+        {stars.map((star, idx) => (
+          <div
+            key={idx}
+            className="absolute bg-white rounded-full opacity-50 animate-twinkle"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: star.size,
+              height: star.size,
+              animationDelay: star.delay,
+            }}
+          />
+        ))}
       </div>
 
-      {/* 🪐 Orbits (Planets) */}
-      {projects.map((project, index) => {
-        // Adjusted sizes for better spacing in production
-        const sizes = [280, 420, 580, 750]; 
-        const duration = [25, 35, 45, 55]; // Varying speeds for organic feel
+      {/* 🌞 Sun Core */}
+      <div className="absolute z-10 flex items-center justify-center pointer-events-none">
+        <div className="relative w-44 h-44 rounded-full bg-[#7CFC00] flex items-center justify-center
+                        shadow-[0_0_60px_25px_rgba(124,252,0,0.5)] animate-pulse">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-black uppercase text-black tracking-tighter text-center">
+            ONE <span className="text-white">PRESS</span>
+          </h1>
+        </div>
+        <div className="absolute w-60 h-60 rounded-full bg-[#7CFC00]/30 animate-ping"></div>
+      </div>
 
-        return (
-          <div
-            key={project.id}
-            onClick={() => setActive(project)}
-            className="absolute rounded-full border border-white/5 animate-spin flex items-start justify-center cursor-pointer"
-            style={{
-              width: sizes[index],
-              height: sizes[index],
-              animationDuration: `${duration[index]}s`,
-            }}
-          >
-            {/* Planet - The Project Bubble */}
-            <div
-              className={`w-14 h-14 rounded-full ${project.color} flex items-center justify-center text-[8px] font-bold text-black uppercase tracking-tighter text-center px-2 transition-all duration-500 hover:scale-150 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]`}
-              style={{
-                // Counter-rotate the text so it stays upright while the orbit spins
-                animation: `reverse-spin ${duration[index]}s linear infinite`,
-              }}
-            >
-              {project.type}
-            </div>
-          </div>
-        );
-      })}
+      {/* 🪐 Orbiting Planets */}{projects.map((project, index) => {
+  const orbitSizes = [380, 480, 600, 720, 840, 960, 1080, 1200]; // 👈 increased first orbit
+  const durations = [25, 28, 32, 36, 40, 45, 50, 55];
 
-      {/* 🌌 Modal (Case Study Detail) */}
+  return (
+    <div
+      key={project.id}
+      onClick={() => setActive(project)}
+      className="absolute rounded-full border border-white/10 animate-spin flex items-start justify-center cursor-pointer z-10 group"
+      style={{
+        width: orbitSizes[index],
+        height: orbitSizes[index],
+        animationDuration: `${durations[index]}s`,
+      }}
+    >
+      <div
+        className={`w-20 h-20 md:w-24 md:h-24 rounded-full ${project.color} flex items-center justify-center text-[10px] md:text-sm font-bold text-black uppercase tracking-tighter text-center px-2 shadow-2xl transition-all duration-500 hover:scale-150 hover:shadow-[0_0_40px_rgba(255,255,255,0.5)]`}
+        style={{
+          animation: `reverse-spin ${durations[index]}s linear infinite`,
+          transform: "translateY(-20px)", // 👈 pushes planet away from sun
+        }}
+      >
+        {project.type}
+      </div>
+    </div>
+  );
+})}
+
+      {/* 🌌 Project Modal */}
       {active && (
         <div
           onClick={() => setActive(null)}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6"
+          className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center z-50 p-6"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-[#111] border border-[#7CFC00]/30 p-10 rounded-[2.5rem] w-full max-w-md text-center shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            className="bg-[#111] border-2 border-dashed border-gray-800 p-12 rounded-[2.5rem] w-full max-w-lg text-center shadow-[0_0_50px_rgba(0,0,0,0.8)]"
           >
-            <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 ${active.color} text-black`}>
+            <span className={`inline-block px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 ${active.color} text-black`}>
               {active.type}
             </span>
-            <h2 className="text-3xl font-black mb-4 tracking-tighter uppercase italic">
+            <h2 className="text-4xl font-black mb-6 tracking-tighter uppercase italic">
               {active.name}
             </h2>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8">
+            <p className="text-gray-400 text-base leading-relaxed mb-10">
               {active.description}
             </p>
 
@@ -112,13 +117,23 @@ export default function UniverseProjects() {
         </div>
       )}
 
-      {/* Injecting the reverse spin to keep text readable */}
-      <style jsx>{`
+      <style>{`
+        @keyframes galaxy-float {
+          0%, 100% { transform: scale(1.1) translate(0px, 0px); }
+          50% { transform: scale(1.15) translate(-10px, -5px); }
+        }
         @keyframes reverse-spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(-360deg); }
         }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.8; }
+        }
+        .animate-twinkle {
+          animation: twinkle 3s linear infinite alternate;
+        }
       `}</style>
-    </div>
+    </section>
   );
 }

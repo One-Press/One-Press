@@ -26,6 +26,11 @@ const SERVICES = [
     title: "Branding and Strategy", 
     image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop" 
   },
+  { 
+    id: "05", 
+    title: "E-commerce Solutions", 
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop" 
+  },
 ];
 
 const DESC = "We create products, brands, apps & websites for the companies all around the world class digital products";
