@@ -15,6 +15,7 @@ import ProjectPage from "./pages/ProjectPage";
 import BlogPage from "./pages/Blog"; // Added the Blog page we created
 import CaseStudies from "./pages/CaseStudies"; // New
 import Career from "./pages/Career";
+import StrategiesPage from "./pages/StrategiesPage";
 
 /**
  * ScrollToTop Component
@@ -56,6 +57,7 @@ function AppContent() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/case-study" element={<CaseStudies />} /> {/* New Route */}
           <Route path="/career" element={<Career />} />
+          <Route path="/strategies" element={<StrategiesPage />} />
         </Routes>
       </main>
 

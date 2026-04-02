@@ -1,16 +1,19 @@
 import React, { useRef, useMemo, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; // ✅ 1. Import ScrollTo
 import { useGSAP } from '@gsap/react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-gsap.registerPlugin(ScrollTrigger);
+// ✅ 2. Register both plugins
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const AppleProductServices = () => {
   const containerRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  // ✅ Service sections - IDs must match Navbar's servicesDropdown IDs
+  // Service sections - IDs match your Navbar dropdown IDs
   const sections = useMemo(() => [
     {
       id: "branding",
@@ -49,21 +52,35 @@ const AppleProductServices = () => {
     }
   ], []);
 
-  // ✅ Handle scroll to section on hash change
+  // ✅ 3. Updated Navigation Logic (Handles Hash Jumps)
   useEffect(() => {
     if (location.hash) {
-      const id = location.hash.substring(1);
-      const el = document.getElementById(id);
-      if (el) {
-        // Wait a bit for components to mount and animations to initialize
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: "smooth" });
+      const targetId = location.hash; // e.g. "#dev"
+      
+      // Wait for GSAP and the DOM to settle (pinning changes heights)
+      const timer = setTimeout(() => {
+        const targetEl = document.querySelector(targetId);
+
+        if (targetEl) {
+          gsap.to(window, {
+            duration: 1.2,
+            scrollTo: {
+              y: targetId,
+              offsetY: 100, // Adjust this to match your Navbar height
+              autoKill: false
+            },
+            ease: "power3.inOut"
+          });
+          // Force a refresh to ensure all pinned elements are in place
           ScrollTrigger.refresh();
-        }, 300);
-      }
+        }
+      }, 700);
+
+      return () => clearTimeout(timer);
     }
   }, [location]);
 
+  // ✅ 4. GSAP Animations with ScrollTrigger
   useGSAP(() => {
     let mm = gsap.matchMedia();
 
@@ -88,17 +105,8 @@ const AppleProductServices = () => {
         .fromTo(visual, { scale: 0.8, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 0.8 }, "<");
       });
 
-      // ✅ Re-check scroll position after GSAP setup
-      if (location.hash) {
-        requestAnimationFrame(() => {
-          const id = location.hash.substring(1);
-          const el = document.getElementById(id);
-          if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
-            ScrollTrigger.refresh();
-          }
-        });
-      }
+      // Recalculate everything once timelines are built
+      ScrollTrigger.refresh();
     });
 
     return () => {
@@ -108,31 +116,32 @@ const AppleProductServices = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="bg-white dark:bg-black overflow-x-hidden selection:bg-sky-500 selection:text-white">
-      {/* HERO */}
+    <section ref={containerRef} className="bg-white dark:bg-black overflow-x-hidden selection:bg-[#7CFC00] selection:text-black">
+      
+      {/* HERO SECTION */}
       <header className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <h1 className="hero-text text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-snug">
+        <h1 className="hero-text text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white leading-snug uppercase italic">
           Digital Excellence.<br />
-          <span className="text-gray-400 text-lg md:text-xl">Masterfully Crafted.</span>
+          <span className="text-gray-400 text-lg md:text-xl uppercase tracking-widest font-mono italic">Masterfully Crafted.</span>
         </h1>
         <p className="hero-text mt-4 text-base md:text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-light leading-relaxed">
           We build, grow, and design the future of digital brands through expert development and strategic marketing.
         </p>
       </header>
 
-      {/* SERVICES */}
+      {/* SERVICES MAIN LIST */}
       <main>
         {sections.map((sec) => (
           <section
-            id={sec.id}
+            id={sec.id} // ✅ Critical for the Navbar to find this section
             key={sec.id}
             className="scroll-section min-h-[80vh] flex items-center py-12 md:py-16"
-            aria-labelledby={`title-${sec.id}`}
           >
             <div className={`max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center w-full ${sec.align === 'right' ? 'md:flex-row-reverse' : ''}`}>
-              {/* TEXT */}
+              
+              {/* TEXT CONTENT */}
               <div className={`text-content ${sec.align === 'right' ? 'md:order-2 text-right' : 'text-left'}`}>
-                <h2 id={`title-${sec.id}`} className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter uppercase italic">
                   {sec.title}
                 </h2>
                 <p className={`text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-md ${sec.align === 'right' ? 'ml-auto' : ''}`}>
@@ -140,37 +149,42 @@ const AppleProductServices = () => {
                 </p>
               </div>
 
-              {/* IMAGE */}
-              <div className="visual-content relative group w-full aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-gray-100 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900 shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+              {/* IMAGE VISUAL */}
+              <div className="visual-content relative group w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden border border-gray-100 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900 shadow-2xl">
                 <img
                   src={sec.image}
-                  alt={`${sec.title} showcase`}
+                  alt={sec.title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  decoding="async"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-80" />
-                <div className="absolute inset-0 border-[1px] border-white/10 rounded-2xl pointer-events-none" />
               </div>
+
             </div>
           </section>
         ))}
       </main>
 
-      {/* CTA */}
+      {/* CTA FOOTER */}
       <footer className="relative py-20 px-4">
-        <div className="max-w-4xl mx-auto bg-zinc-900 dark:bg-white text-white dark:text-black rounded-2xl p-12 md:p-16 text-center overflow-hidden">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            Ready to scale?
+        <div className="max-w-4xl mx-auto bg-zinc-900 dark:bg-[#111] text-white rounded-[3rem] p-12 md:p-16 text-center border border-white/5">
+          <h2 className="text-3xl md:text-6xl font-black mb-6 tracking-tighter uppercase italic">
+            Ready to <span className="text-[#7CFC00]">scale?</span>
           </h2>
-          <p className="text-base md:text-lg mb-8 opacity-80 font-light max-w-xl mx-auto">
+          <p className="text-base md:text-lg mb-8 opacity-60 font-light max-w-xl mx-auto">
             Our marketing engine is built to drive traffic, capture leads, and convert users into lifelong customers.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="px-8 py-3 rounded-full bg-sky-500 text-white font-bold text-base hover:bg-sky-400 transition-all active:scale-95 shadow-xl shadow-sky-500/20">
+            <button 
+              onClick={() => navigate('/contact')}
+              className="px-10 py-4 rounded-full bg-[#7CFC00] text-black font-black uppercase text-sm tracking-widest hover:scale-105 transition-all active:scale-95 shadow-xl shadow-[#7CFC00]/20"
+            >
               Get Your Free Audit
             </button>
-            <button className="px-8 py-3 rounded-full border border-white/20 dark:border-black/20 font-bold text-base hover:bg-white/10 dark:hover:bg-black/5 transition-all">
+            <button 
+              onClick={() => navigate('/strategies')}
+              className="px-10 py-4 rounded-full border border-white/20 font-black uppercase text-sm tracking-widest hover:bg-white hover:text-black transition-all"
+            >
               Our Strategies
             </button>
           </div>

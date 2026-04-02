@@ -1,17 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // 1. Import Link
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import Button from "../ui/Button"; 
 
 export default function Footer() {
   const socialLinks = [
-    { icon: <FaFacebookF />, url: "#", label: "Facebook" },
-    { icon: <FaTwitter />, url: "#", label: "Twitter" },
-    { icon: <FaInstagram />, url: "#", label: "Instagram" },
-    { icon: <FaLinkedinIn />, url: "#", label: "LinkedIn" },
+    { 
+      icon: <FaFacebookF />, 
+      url: "https://www.facebook.com/OnePressSolutions/", 
+      label: "Facebook" 
+    },
+    { 
+      icon: <FaInstagram />, 
+      url: "https://www.instagram.com/onepresssolutions/", 
+      label: "Instagram" 
+    },
+    { 
+      icon: <FaLinkedinIn />, 
+      url: "https://www.linkedin.com/company/onepresssolutions/", 
+      label: "LinkedIn" 
+    },
   ];
 
-  // 2. Updated Link Mapping with real paths
   const infoLinks = [
     { name: 'About Company', path: '/about' },
     { name: 'Case Study', path: '/case-study' },
@@ -34,14 +44,21 @@ export default function Footer() {
           </p>
           <div className="flex gap-4">
             {socialLinks.map((social, index) => (
-              <a key={index} href={social.url} className="w-11 h-11 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#7CFC00] hover:text-black hover:border-[#7CFC00] transition-all duration-300 cursor-pointer text-lg">
+              <a 
+                key={index} 
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="w-11 h-11 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#7CFC00] hover:text-black hover:border-[#7CFC00] transition-all duration-300 cursor-pointer text-lg"
+              >
                 {social.icon}
               </a>
             ))}
           </div>
         </div>
 
-        {/* Column 2: Quick Links (FIXED) */}
+        {/* Column 2: Quick Links */}
         <div>
           <h3 className="text-white font-bold mb-6 uppercase text-xs tracking-widest">Information</h3>
           <ul className="space-y-4 text-sm">
@@ -78,16 +95,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Footer */}
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+      {/* Bottom Footer (Subscription Removed) */}
+      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex justify-center items-center">
         <p className="text-[12px] font-medium tracking-wide text-center">
           © 2022 – 2026 | ALL RIGHTS RESERVED BY <span className="text-white uppercase font-bold">One Press</span>
         </p>
-        
-        <div className="relative w-full md:w-[400px]">
-          <input type="email" placeholder="Subscribe" className="w-full bg-[#151515] py-4 pl-6 pr-16 rounded-full text-white border border-transparent focus:border-[#7CFC00] outline-none transition-all placeholder-gray-600 text-sm" />
-          <button className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#7CFC00] rounded-full text-black flex items-center justify-center hover:scale-110 transition-all shadow-lg">➤</button>
-        </div>
       </div>
     </footer>
   );
