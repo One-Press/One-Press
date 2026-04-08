@@ -30,13 +30,13 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-4 text-xl">
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
-                  (+1) 708 – 630 – 6059
+                  +92 306 1006767
                 </p>
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
                   onepresssolutions@gmail.com
                 </p>
                 <p className="text-gray-500 max-w-xs">
-                  Valentin, Street Road 24, New York, USA – 67452
+                  74, Commercial Broadway, Paragon City, Lahore, 54000
                 </p>
               </div>
             </div>
