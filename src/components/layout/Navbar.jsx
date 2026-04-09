@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiMenu, FiX, FiChevronDown } from "react-icons/fi"; // Added Chevron
+import { FiMenu, FiX, FiChevronDown } from "react-icons/fi";
 import { useNavigate, Link } from "react-router-dom";
 
 function Navbar() {
@@ -8,18 +8,19 @@ function Navbar() {
 
   const navItems = ["Home", "Services", "Projects", "About", "Contact"];
 
+  // ✅ Updated to use 'path' for new individual pages
   const servicesDropdown = [
-    { name: "Branding & Identity", id: "branding" },
-    { name: "Web Design & UI/UX", id: "uiux" },
-    { name: "Web Development", id: "dev" },
-    { name: "Digital Marketing", id: "marketing" },
-    { name: "E-commerce Solutions", id: "ecommerce" }
+    { name: "Branding & Identity", path: "/branding" },
+    { name: "Web Design & UI/UX", path: "/uiux" },
+    { name: "Web Development", path: "/dev" },
+    { name: "Digital Marketing", path: "/marketing" },
+    { name: "E-commerce Solutions", path: "/ecommerce" }
   ];
 
   const handleNavigation = (item) => {
     const paths = {
       Home: "/",
-      Services: "/services",
+      Services: "/services", // Keep this if you still want a main services overview
       Projects: "/projects",
       About: "/about",
       Contact: "/contact"
@@ -28,13 +29,11 @@ function Navbar() {
     setIsOpen(false);
   };
 
-  // Inside Navbar.jsx - Update handleServiceClick
-const handleServiceClick = (id) => {
-  // If we are already on services, we just need to update the hash
-  // If we are elsewhere, navigate to services with the hash
-  navigate(`/services#${id}`);
-  setIsOpen(false);
-};
+  // ✅ Updated to navigate directly to the new page path
+  const handleServiceClick = (path) => {
+    navigate(path);
+    setIsOpen(false);
+  };
 
   return (
     <nav className="w-full fixed top-0 left-0 z-[100] bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
@@ -43,16 +42,15 @@ const handleServiceClick = (id) => {
         
         {/* 🔹 Logo */}
         <div className="flex-1 flex justify-start">
-          <Link to="/" className="flex items-center gap-3 group">
-            <img 
-              src="/images/logo2.png" 
-              alt="Logo" 
-              className="h-10 w-auto object-contain"
-              onError={(e) => { e.target.src = "https://via.placeholder.com/40?text=OP"; }}
-            />
-            <span className="text-2xl font-black text-[#111c70] tracking-tighter hidden sm:block uppercase italic">
-              One<span className="text-[#7CFC00]">Press</span>
-            </span>
+          <Link to="/" className="flex items-center group">
+            <div className="relative">
+              <img 
+                src="/ops logo.png" 
+                alt="Logo" 
+                className="h-20 md:h-24 w-auto object-contain transition-all duration-300 ease-out group-hover:scale-110 group-hover:drop-shadow-[0_16px_35px_rgba(124,252,0,0.35)]"
+              />
+              <div className="absolute inset-0 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 bg-[#7CFC00]/25"></div>
+            </div>
           </Link>
         </div>
 
@@ -66,7 +64,6 @@ const handleServiceClick = (id) => {
                   className="flex items-center gap-1 hover:text-blue-600 transition-colors duration-200"
                 >
                   {item}
-                  {/* Show icon only for Services */}
                   {item === "Services" && (
                     <FiChevronDown className="text-lg transition-transform duration-300 group-hover:rotate-180" />
                   )}
@@ -81,7 +78,7 @@ const handleServiceClick = (id) => {
                           key={i}
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleServiceClick(service.id);
+                            handleServiceClick(service.path); // ✅ Using service.path
                           }}
                           className="px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-blue-600 transition-all cursor-pointer text-[13px] font-bold flex items-center justify-between group/item"
                         >
@@ -100,7 +97,7 @@ const handleServiceClick = (id) => {
           </ul>
         </div>
 
-        {/* 🔹 Right Side (Call to Action placeholder or Mobile Toggle) */}
+        {/* 🔹 Right Side */}
         <div className="flex-1 flex justify-end items-center">
           <button 
             onClick={() => setIsOpen(!isOpen)} 
@@ -133,8 +130,8 @@ const handleServiceClick = (id) => {
                   {servicesDropdown.map((service, i) => (
                     <li 
                       key={i} 
-                      onClick={() => handleServiceClick(service.id)}
-                      className="text-sm py-2 hover:text-blue-600 transition"
+                      onClick={() => handleServiceClick(service.path)} // ✅ Using service.path
+                      className="text-sm py-2 hover:text-blue-600 transition cursor-pointer"
                     >
                       {service.name}
                     </li>

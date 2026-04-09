@@ -16,6 +16,11 @@ import BlogPage from "./pages/Blog"; // Added the Blog page we created
 import CaseStudies from "./pages/CaseStudies"; // New
 import Career from "./pages/Career";
 import StrategiesPage from "./pages/StrategiesPage";
+import BrandingPage from './pages/BrandingPage';
+import UIUXPage from './pages/UIUXPage';
+import WebDevPage from './pages/WebDevPage';
+import MarketingPage from './pages/MarketingPage';
+import EcommercePage from './pages/EcommercePage';
 
 /**
  * ScrollToTop Component
@@ -58,6 +63,11 @@ function AppContent() {
           <Route path="/case-study" element={<CaseStudies />} /> {/* New Route */}
           <Route path="/career" element={<Career />} />
           <Route path="/strategies" element={<StrategiesPage />} />
+          <Route path="/branding" element={<BrandingPage />} />
+          <Route path="/uiux" element={<UIUXPage />} />
+          <Route path="/dev" element={ <WebDevPage /> } />
+          <Route path="/marketing" element={<MarketingPage />} />
+          <Route path="/ecommerce" element={<EcommercePage />} />
         </Routes>
       </main>
 
