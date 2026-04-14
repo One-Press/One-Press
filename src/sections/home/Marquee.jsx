@@ -9,12 +9,12 @@ function Marquee() {
   ];
 
   return (
-    <div className="overflow-hidden w-full bg-gray-50 py-4">
+    <div className="overflow-hidden w-full bg-white-50 py-4">
       <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
         {services.concat(services).map((service, index) => (
           <span
             key={index}
-            className="px-6 text-2xl font-bold text-gray-800 uppercase whitespace-nowrap"
+            className="px-6 text-2xl font-bold text-white-800 uppercase whitespace-nowrap"
           >
             {service}
           </span>

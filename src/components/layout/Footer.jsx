@@ -78,7 +78,7 @@ export default function Footer() {
           <p className="mb-4 text-sm">74, Commercial Broadway, Paragon City, Lahore, 54000</p>
           <p className="mb-2 font-bold text-white text-lg">+92 306 1006767</p>
           <Link to="/contact" className="text-sm hover:text-[#7CFC00] underline decoration-gray-700 underline-offset-4 transition-all">
-            onepresssolutions@gmail.com
+            info@onepresssolutions.com
           </Link>
         </div>
 

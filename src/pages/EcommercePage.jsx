@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiShoppingCart, FiCreditCard, FiPackage, FiActivity, FiArrowRight, FiShield } from "react-icons/fi";
 import gsap from 'gsap';
+import Footer from "../components/layout/Footer";
+
 
 const EcommercePage = () => {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ const EcommercePage = () => {
               Sell <br /> 
               <span className="text-white/20">Anything.</span>
             </h1>
-            <p className="eco-reveal text-gray-500 text-lg md:text-xl leading-relaxed max-w-xl">
+            <p className="eco-reveal text-white-500 text-lg md:text-xl leading-relaxed max-w-xl">
               We turn visitors into buyers. Our e-commerce solutions are engineered to reduce cart abandonment and maximize the lifetime value of every customer.
             </p>
           </div>
@@ -63,7 +65,7 @@ const EcommercePage = () => {
                    <div className="h-10 bg-[#7CFC00] rounded-lg" />
                 </div>
              </div>
-             <p className="mt-8 text-[10px] font-mono text-gray-600 uppercase tracking-widest">Optimized Checkout Flow v4.1</p>
+             <p className="mt-8 text-[10px] font-mono text-white-600 uppercase tracking-widest">Optimized Checkout Flow v4.1</p>
           </div>
         </header>
 
@@ -73,14 +75,14 @@ const EcommercePage = () => {
             <img 
               src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=800&auto=format&fit=crop" 
               alt="Retail Experience"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover whitescale hover:whitescale-0 transition-all duration-700"
             />
           </div>
           <div className="h-[50vh] rounded-[3rem] overflow-hidden border border-white/5 bg-[#111] flex items-center justify-center p-12">
              <div className="text-center">
                 <FiShield className="text-8xl text-[#7CFC00] mb-6 mx-auto opacity-20" />
                 <h3 className="text-2xl font-black uppercase italic mb-4">Secured Transactions</h3>
-                <p className="text-gray-500 text-sm max-w-xs mx-auto">SSL Encryption and PCI compliance are standard in every store we deploy.</p>
+                <p className="text-white-500 text-sm max-w-xs mx-auto">SSL Encryption and PCI compliance are standard in every store we deploy.</p>
              </div>
           </div>
         </div>
@@ -93,7 +95,7 @@ const EcommercePage = () => {
                 {f.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 uppercase italic tracking-tight">{f.title}</h3>
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-white-500 leading-relaxed">
                 {f.desc}
               </p>
             </div>
@@ -103,7 +105,7 @@ const EcommercePage = () => {
         {/* --- Tech Platforms --- */}
         <section className="mb-32 text-center">
            <h2 className="text-3xl font-black uppercase italic mb-12 opacity-20 tracking-[0.2em]">Partnering with the Best</h2>
-           <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale">
+           <div className="flex flex-wrap justify-center gap-12 opacity-40 whitescale">
               {["Shopify", "WooCommerce", "Stripe", "Magento", "BigCommerce"].map((brand, i) => (
                 <span key={i} className="text-xl font-black uppercase italic">{brand}</span>
               ))}
@@ -125,6 +127,7 @@ const EcommercePage = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -10,10 +10,10 @@ export default function ContactPage() {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <h1 className="text-7xl md:text-8xl font-bold text-black leading-none">
-            Let’s get in <br /> touch
+            Let’s Get In <br /> Touch
           </h1>
           <div className="flex items-start lg:justify-end">
-            <p className="text-gray-600 text-lg max-w-sm">
+            <p className="text-white-600 text-lg max-w-sm">
               Great! We're excited to hear from you and let's start something special together. call us for any inquiry.
             </p>
           </div>
@@ -26,16 +26,16 @@ export default function ContactPage() {
           <div className="space-y-12">
             <div>
               <h2 className="text-3xl font-bold text-black mb-6">
-                Don't be afraid man ! <br /> say hello
+                Don't Be Afraid Man ! <br /> Say Hello
               </h2>
               <div className="space-y-4 text-xl">
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
                   +92 306 1006767
                 </p>
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
-                  onepresssolutions@gmail.com
+                  info@onepresssolutions
                 </p>
-                <p className="text-gray-500 max-w-xs">
+                <p className="text-white-500 max-w-xs">
                   74, Commercial Broadway, Paragon City, Lahore, 54000
                 </p>
               </div>
@@ -53,8 +53,8 @@ export default function ContactPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               
-              <div className="border-b border-gray-300 py-4">
-                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+              <div className="border-b border-white-300 py-4">
+                <label className="block text-sm uppercase tracking-widest text-white-400 mb-2">
                   Name *
                 </label>
                 <input
@@ -65,8 +65,8 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="border-b border-gray-300 py-4">
-                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+              <div className="border-b border-white-300 py-4">
+                <label className="block text-sm uppercase tracking-widest text-white-400 mb-2">
                   Email *
                 </label>
                 <input
@@ -81,8 +81,8 @@ export default function ContactPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               
-              <div className="border-b border-gray-300 py-4">
-                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+              <div className="border-b border-white-300 py-4">
+                <label className="block text-sm uppercase tracking-widest text-white-400 mb-2">
                   Phone
                 </label>
                 <input
@@ -92,8 +92,8 @@ export default function ContactPage() {
                 />
               </div>
 
-              <div className="border-b border-gray-300 py-4">
-                <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+              <div className="border-b border-white-300 py-4">
+                <label className="block text-sm uppercase tracking-widest text-white-400 mb-2">
                   Subject *
                 </label>
                 <input
@@ -106,8 +106,8 @@ export default function ContactPage() {
 
             </div>
 
-            <div className="border-b border-gray-300 py-4">
-              <label className="block text-sm uppercase tracking-widest text-gray-400 mb-2">
+            <div className="border-b border-white-300 py-4">
+              <label className="block text-sm uppercase tracking-widest text-white-400 mb-2">
                 Message *
               </label>
               <textarea

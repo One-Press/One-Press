@@ -32,7 +32,7 @@ export default function Testimonials() {
                   key={`${setIndex}-${i}`}
                   className="bg-[#111] border border-white/5 p-6 md:p-8 rounded-2xl w-[280px] sm:w-[320px] md:w-[400px] shadow-2xl flex flex-col justify-between flex-shrink-0"
                 >
-                  <p className="text-gray-400 text-sm md:text-base mb-6 md:mb-8 whitespace-normal leading-relaxed italic">
+                  <p className="text-white-400 text-sm md:text-base mb-6 md:mb-8 whitespace-normal leading-relaxed italic">
                     "{t.text}"
                   </p>
 

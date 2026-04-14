@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from "../components/layout/Footer";
 
 const JOBS = [
   { title: "Senior React Developer", type: "Full-Time", location: "Remote / NY", dept: "Engineering" },
@@ -14,7 +15,7 @@ export default function Career() {
           <h1 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mb-8">
             Join The <span className="text-[#7CFC00]">Mission</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-white-400 text-lg max-w-2xl mx-auto">
             We’re looking for visionaries, rebels, and creators to help us build the next generation of digital products.
           </p>
         </div>
@@ -25,7 +26,7 @@ export default function Career() {
               <div className="text-center md:text-left mb-6 md:mb-0">
                 <span className="text-[#7CFC00] text-[10px] font-mono uppercase tracking-[0.2em]">{job.dept}</span>
                 <h3 className="text-2xl md:text-3xl font-bold mt-2 group-hover:text-[#7CFC00] transition-colors">{job.title}</h3>
-                <div className="flex gap-4 mt-3 text-gray-500 text-sm justify-center md:justify-start">
+                <div className="flex gap-4 mt-3 text-white-500 text-sm justify-center md:justify-start">
                   <span>{job.location}</span>
                   <span>•</span>
                   <span>{job.type}</span>
@@ -38,6 +39,7 @@ export default function Career() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

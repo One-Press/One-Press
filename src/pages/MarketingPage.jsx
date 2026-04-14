@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiTrendingUp, FiBarChart2, FiSearch, FiMail, FiArrowRight, FiPieChart } from "react-icons/fi";
 import gsap from 'gsap';
+import Footer from "../components/layout/Footer";
+
 
 const MarketingPage = () => {
   const navigate = useNavigate();
@@ -45,7 +47,7 @@ const MarketingPage = () => {
             Growth <br /> 
             <span className="text-white/20">Accelerated.</span>
           </h1>
-          <p className="mkt-reveal text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl">
+          <p className="mkt-reveal text-white-500 text-lg md:text-xl leading-relaxed max-w-2xl">
             Visibility is the new currency. We deploy aggressive, data-backed marketing strategies that turn passive scrollers into loyal customers and brand advocates.
           </p>
         </header>
@@ -55,7 +57,7 @@ const MarketingPage = () => {
           <img 
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
             alt="Marketing Data Analytics"
-            className="w-full h-full object-cover grayscale brightness-75 transition-all duration-1000 hover:grayscale-0"
+            className="w-full h-full object-cover whitescale brightness-75 transition-all duration-1000 hover:whitescale-0"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
           <div className="absolute bottom-10 left-10 right-10 flex flex-wrap gap-4">
@@ -75,7 +77,7 @@ const MarketingPage = () => {
                 {s.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 uppercase italic tracking-tight">{s.title}</h3>
-              <p className="text-gray-500 leading-relaxed group-hover:text-gray-400">
+              <p className="text-white-500 leading-relaxed group-hover:text-white-400">
                 {s.desc}
               </p>
             </div>
@@ -87,7 +89,7 @@ const MarketingPage = () => {
           <div className="mkt-reveal order-2 md:order-1">
              <div className="relative p-8 bg-[#111] rounded-[3rem] border border-white/5 overflow-hidden">
                 <div className="flex items-center justify-between mb-12">
-                   <h4 className="text-sm font-mono text-gray-500 uppercase">Quarterly Growth Report</h4>
+                   <h4 className="text-sm font-mono text-white-500 uppercase">Quarterly Growth Report</h4>
                    <FiPieChart className="text-[#7CFC00]" />
                 </div>
                 <div className="space-y-8">
@@ -113,7 +115,7 @@ const MarketingPage = () => {
              <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-8 leading-none">
                 Data-Driven <br /> <span className="text-[#7CFC00]">Dominance.</span>
              </h2>
-             <p className="text-gray-400 text-lg leading-relaxed mb-8">
+             <p className="text-white-400 text-lg leading-relaxed mb-8">
                 We don't guess; we calculate. Our marketing engine analyzes competitor weaknesses and market gaps to place your brand where it matters most.
              </p>
              <div className="flex items-center gap-6">
@@ -122,7 +124,7 @@ const MarketingPage = () => {
                      <div key={i} className="w-12 h-12 rounded-full border-4 border-black bg-zinc-800" />
                    ))}
                 </div>
-                <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Trusted by 50+ Global Brands</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-white-500">Trusted by 50+ Global Brands</p>
              </div>
           </div>
         </section>
@@ -141,6 +143,7 @@ const MarketingPage = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

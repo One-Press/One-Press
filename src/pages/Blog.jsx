@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from "../components/layout/Footer";
 
 const POSTS = [
   {
@@ -56,7 +57,7 @@ export default function BlogPage() {
             <h2 className="text-3xl md:text-5xl font-bold max-w-3xl leading-tight mb-4 group-hover:text-[#7CFC00] transition-colors">
               {POSTS[0].title}
             </h2>
-            <p className="text-gray-400 max-w-xl text-sm md:text-base line-clamp-2">
+            <p className="text-white-400 max-w-xl text-sm md:text-base line-clamp-2">
               {POSTS[0].excerpt}
             </p>
           </div>
@@ -69,7 +70,7 @@ export default function BlogPage() {
               <div className="aspect-[16/10] rounded-3xl overflow-hidden border border-white/5 mb-6 bg-[#111]">
                 <img 
                   src={post.image} 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
+                  className="w-full h-full object-cover whitescale group-hover:whitescale-0 transition-all duration-500 group-hover:scale-105" 
                   alt={post.title} 
                 />
               </div>
@@ -77,14 +78,14 @@ export default function BlogPage() {
                 <span className="text-[#7CFC00] text-[10px] font-mono uppercase tracking-widest">
                   {post.category}
                 </span>
-                <span className="text-gray-600 text-[10px] uppercase tracking-widest">
+                <span className="text-white-600 text-[10px] uppercase tracking-widest">
                   {post.date}
                 </span>
               </div>
               <h3 className="text-2xl font-bold mb-3 tracking-tight group-hover:underline decoration-[#7CFC00] underline-offset-8 transition-all">
                 {post.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-white-400 text-sm leading-relaxed">
                 {post.excerpt}
               </p>
             </article>
@@ -96,14 +97,14 @@ export default function BlogPage() {
           <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-6">
             Stay in the <span className="text-[#7CFC00]">Orbit</span>
           </h2>
-          <p className="text-gray-400 mb-8 max-w-md">
+          <p className="text-white-400 mb-8 max-w-md">
             Get our latest insights on design and technology delivered to your inbox every month.
           </p>
           <div className="w-full max-w-md relative">
             <input 
               type="email" 
               placeholder="Email address" 
-              className="w-full bg-black py-4 px-6 rounded-full border border-gray-800 focus:border-[#7CFC00] outline-none transition-all"
+              className="w-full bg-black py-4 px-6 rounded-full border border-white-800 focus:border-[#7CFC00] outline-none transition-all"
             />
             <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#7CFC00] text-black px-6 py-2 rounded-full font-bold text-xs uppercase hover:scale-105 transition-transform">
               Join
@@ -112,6 +113,7 @@ export default function BlogPage() {
         </section>
 
       </div>
+      <Footer />
     </div>
   );
 }

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiCheckCircle, FiPenTool, FiLayers, FiTarget, FiArrowRight } from "react-icons/fi";
 import gsap from 'gsap';
+import Footer from "../components/layout/Footer";
+
 
 const BrandingPage = () => {
   const navigate = useNavigate();
@@ -45,7 +47,7 @@ const BrandingPage = () => {
             Identity <br /> 
             <span className="text-white/20">That Leads.</span>
           </h1>
-          <p className="brand-reveal text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl">
+          <p className="brand-reveal text-white-500 text-lg md:text-xl leading-relaxed max-w-2xl">
             We don't just design logos; we build visual legacies. Our branding process connects your business values with human emotions.
           </p>
         </header>
@@ -55,7 +57,7 @@ const BrandingPage = () => {
           <img 
             src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1964&auto=format&fit=crop" 
             alt="Branding Showcase"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+            className="w-full h-full object-cover whitescale hover:whitescale-0 transition-all duration-1000"
           />
         </div>
 
@@ -67,7 +69,7 @@ const BrandingPage = () => {
                 {f.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 uppercase italic">{f.title}</h3>
-              <p className="text-gray-500 leading-relaxed">{f.desc}</p>
+              <p className="text-white-500 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -82,7 +84,7 @@ const BrandingPage = () => {
               <div key={idx} className="flex items-center gap-6 p-8 bg-[#111] rounded-3xl border border-white/5 hover:bg-[#151515] transition-colors">
                 <span className="text-[#7CFC00] font-mono text-xl">0{idx + 1}</span>
                 <span className="text-xl md:text-2xl font-bold uppercase tracking-tight">{step}</span>
-                <FiCheckCircle className="ml-auto text-gray-700 group-hover:text-[#7CFC00]" />
+                <FiCheckCircle className="ml-auto text-white-700 group-hover:text-[#7CFC00]" />
               </div>
             ))}
           </div>
@@ -102,6 +104,7 @@ const BrandingPage = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

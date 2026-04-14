@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Added for button navigation
 import "./hero.css";
 
 export default function Hero() {
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
   const [mouse, setMouse] = useState({ x: null, y: null });
 
   useEffect(() => {
@@ -12,18 +14,15 @@ export default function Hero() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Resize listener
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener("resize", handleResize);
 
-    // Mouse move listener
     const handleMouseMove = (e) => setMouse({ x: e.clientX, y: e.clientY });
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Particle class with depth and glow
     class Particle {
       constructor(layer) {
         this.layer = layer;
@@ -36,13 +35,14 @@ export default function Hero() {
         this.vx = (Math.random() - 0.5) * (0.3 + 0.2 * this.layer);
         this.vy = (Math.random() - 0.5) * (0.3 + 0.2 * this.layer);
         this.size = Math.random() * (1.5 + this.layer) + 1;
-        this.color = `rgba(0, 255, 255, ${0.3 + 0.2 * this.layer})`;
+        // Updated color to match your brand's neon green
+        this.color = `rgba(124, 252, 0, ${0.2 + 0.1 * this.layer})`; 
       }
 
       draw() {
         ctx.fillStyle = this.color;
-        ctx.shadowColor = "#0ff";
-        ctx.shadowBlur = 8;
+        ctx.shadowColor = "#7CFC00";
+        ctx.shadowBlur = 5;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -52,50 +52,43 @@ export default function Hero() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Wrap edges
         if (this.x > width) this.x = 0;
         if (this.x < 0) this.x = width;
         if (this.y > height) this.y = 0;
         if (this.y < 0) this.y = height;
 
-        // Mouse attraction
         if (mouse.x && mouse.y) {
           const dx = mouse.x - this.x;
           const dy = mouse.y - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 150) {
-            this.vx += dx * 0.0007 * this.layer;
-            this.vy += dy * 0.0007 * this.layer;
+            this.vx += dx * 0.0005 * this.layer;
+            this.vy += dy * 0.0005 * this.layer;
           }
         }
-
         this.draw();
       }
     }
 
-    // Create particles
     const particles = [];
     const layerCount = 3;
-    const particlesPerLayer = [30, 25, 20]; // front to back
+    const particlesPerLayer = [25, 20, 15];
     for (let l = 0; l < layerCount; l++) {
       for (let i = 0; i < particlesPerLayer[l]; i++) {
         particles.push(new Particle(l + 1));
       }
     }
 
-    // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.strokeStyle = `rgba(0, 255, 255, ${0.15 + 0.05 * particles[i].layer})`;
-            ctx.lineWidth = 1;
+          if (dist < 150) {
+            ctx.strokeStyle = `rgba(124, 252, 0, ${0.1})`;
+            ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -103,7 +96,6 @@ export default function Hero() {
           }
         }
       }
-
       particles.forEach((p) => p.update());
       requestAnimationFrame(animate);
     };
@@ -115,87 +107,65 @@ export default function Hero() {
     };
   }, [mouse]);
 
-  // CTA explosion
   const handleCTA = () => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    const width = canvas.width;
-    const height = canvas.height;
-
-    const explosionParticles = [];
-    for (let i = 0; i < 150; i++) {
-      explosionParticles.push({
-        x: width / 2,
-        y: height / 2,
-        vx: (Math.random() - 0.5) * 15,
-        vy: (Math.random() - 0.5) * 15,
-        size: Math.random() * 3 + 1,
-      });
-    }
-
-    const animateExplosion = () => {
-      ctx.clearRect(0, 0, width, height);
-      explosionParticles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vx *= 0.95;
-        p.vy *= 0.95;
-        p.size *= 0.97;
-        ctx.fillStyle = `rgba(0,255,255,0.8)`;
-        ctx.shadowColor = "#0ff";
-        ctx.shadowBlur = 10;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      if (explosionParticles[0].size > 0.1) requestAnimationFrame(animateExplosion);
-    };
-    animateExplosion();
+    navigate('/services'); // Redirect to services on click
   };
 
   return (
-    <section className="relative min-h-screen bg-[#111] text-white flex items-center overflow-hidden">
+    <section className="relative min-h-screen bg-[#0a0a0a] text-white flex items-center overflow-hidden selection:bg-[#7CFC00] selection:text-black">
       {/* Particle Background */}
-      <canvas ref={canvasRef} id="particles" className="absolute inset-0 z-0" />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 opacity-40" />
 
-      {/* Foreground content */}
-      <div className="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Container Refinement: 
+          Added 'pt-32' to ensure content starts below the fixed Navbar.
+          Added 'pb-12' for bottom breathing room.
+      */}
+      <div className="container mx-auto px-6 relative z-10 pt-32 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-         <div className="flex items-center gap-2 mb-6 pt-[10px] text-sm uppercase tracking-widest text-gray-400">
-  Design • Develop • Dominate
-  <span>↗</span>
-</div>
-          <h1 className="text-7xl md:text-9xl font-bold leading-none mb-8">
-            OnePress <br /> Solutions <span className="text-sm border border-gray-600 rounded-full px-3 py-1 ml-2 align-super"></span>
+          {/* Top Tagline */}
+          <div className="flex items-center gap-3 mb-6 text-xs font-black uppercase tracking-[0.4em] text-[#7CFC00]">
+            Best Digital Marketing Agency in USA
+            <span className="animate-pulse">↗</span>
+          </div>
+          
+          {/* Main SEO Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight uppercase italic">
+            One Press <span className="text-[#7CFC00]">Solutions</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 max-w-md leading-relaxed">
-            With every single one of our clients, we bring forth deep passion for{" "}
-            <span className="font-bold text-white"> creative problem solving </span>
-            which is what we deliver.
+          {/* Agency Description */}
+          <p className="text-lg md:text-xl text-white-400 max-w-lg leading-relaxed mb-10">
+            One Press Solutions is a full-service digital marketing agency offering 
+            <span className="text-white font-bold"> SEO, social media, web design & content marketing. </span> 
+            We bring forth deep passion for creative problem solving to grow your business online today!
           </p>
 
-          {/* CTA Button */}
+          {/* Action Button */}
           <button
             onClick={handleCTA}
-            className="mt-6 ml-[60px] px-6 py-3 bg-[#2563eb] rounded-lg text-white font-bold hover:bg-[#3b82f6] transition"
+            className="group flex items-center gap-4 bg-[#7CFC00] text-black px-10 py-5 rounded-full font-black uppercase text-sm tracking-widest hover:bg-white transition-all shadow-2xl shadow-[#7CFC00]/20"
           >
             Explore Platform
+            <span className="group-hover:translate-x-2 transition-transform">→</span>
           </button>
         </div>
 
+        {/* Hero Stats Section */}
         <div className="lg:text-right">
-          <h2 className="text-6xl md:text-8xl font-bold mb-4">25k+</h2>
-          <p className="text-xl text-gray-400">Projects completed successfully</p>
+          <h2 className="text-7xl md:text-[10rem] font-black mb-2 italic tracking-tighter leading-none">
+            5k<span className="text-[#7CFC00]">+</span>
+          </h2>
+          <p className="text-sm md:text-base font-mono uppercase tracking-[0.3em] text-white-500">
+            Projects completed successfully
+          </p>
         </div>
       </div>
 
-      {/* Down Arrow */}
-      <div className="absolute bottom-12 left-12 animate-bounce">
-        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+        <span className="text-[10px] uppercase tracking-[0.5em] font-bold rotate-90 mb-10">Scroll</span>
+        <div className="w-[1px] h-16 bg-gradient-to-b from-[#7CFC00] to-transparent"></div>
       </div>
     </section>
   );
-}
+  }

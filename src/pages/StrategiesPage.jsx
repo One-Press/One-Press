@@ -49,7 +49,7 @@ const StrategiesPage = () => {
             Our <span className="text-white/20">Growth</span> <br /> 
             Strategies.
           </h1>
-          <p className="text-gray-500 text-lg md:text-xl leading-relaxed">
+          <p className="text-white-500 text-lg md:text-xl leading-relaxed">
             We don't just build websites; we engineer digital ecosystems. Our data-backed approach ensures every pixel and every line of code serves a business goal.
           </p>
         </header>
@@ -77,7 +77,7 @@ const StrategiesPage = () => {
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 uppercase tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 leading-relaxed group-hover:text-gray-300 transition-colors">
+                <p className="text-white-500 leading-relaxed group-hover:text-white-300 transition-colors">
                   {item.desc}
                 </p>
               </div>

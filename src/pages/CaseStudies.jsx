@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Footer from "../components/layout/Footer";
+
 
 const CASE_STUDIES = [
   {
@@ -26,7 +28,7 @@ export default function CaseStudies() {
           <h1 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter">
             Proven <span className="text-[#7CFC00]">Results</span>
           </h1>
-          <p className="text-gray-500 mt-6 max-w-xl text-lg uppercase tracking-widest font-mono">
+          <p className="text-white-500 mt-6 max-w-xl text-lg uppercase tracking-widest font-mono">
             How we help global brands dominate their orbit.
           </p>
         </header>
@@ -35,7 +37,7 @@ export default function CaseStudies() {
           {CASE_STUDIES.map((study, index) => (
             <div key={study.id} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center group`}>
               <div className="w-full md:w-3/5 overflow-hidden rounded-[3rem] border border-white/5">
-                <img src={study.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0" alt={study.title} />
+                <img src={study.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 whitescale group-hover:whitescale-0" alt={study.title} />
               </div>
               <div className="w-full md:w-2/5">
                 <span className="text-[#7CFC00] font-mono text-sm uppercase tracking-[0.3em]">{study.tag}</span>
@@ -49,6 +51,7 @@ export default function CaseStudies() {
           ))}
         </div>
       </div>
+      <Footer />  
     </div>
   );
 }

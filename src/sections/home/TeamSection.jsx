@@ -13,7 +13,7 @@ export default function TeamSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-gray-400 uppercase tracking-widest text-sm mb-4">Our Team</p>
+          <p className="text-white-400 uppercase tracking-widest text-sm mb-4">Our Team</p>
           <h2 className="text-4xl md:text-5xl font-bold">Meet the experts</h2>
         </div>
 
@@ -22,7 +22,7 @@ export default function TeamSection() {
           {TEAM_MEMBERS.map((member, i) => (
             <div key={i} className="group cursor-pointer">
               {/* Image Container */}
-              <div className="aspect-[3/4] bg-gray-800 rounded-2xl mb-6 overflow-hidden">
+              <div className="aspect-[3/4] bg-white-800 rounded-2xl mb-6 overflow-hidden">
                 <img 
                   src={member.img} 
                   alt={member.name} 
@@ -31,7 +31,7 @@ export default function TeamSection() {
               </div>
               {/* Info */}
               <h3 className="text-xl font-bold">{member.name}</h3>
-              <p className="text-gray-400">{member.role}</p>
+              <p className="text-white-400">{member.role}</p>
             </div>
           ))}
         </div>

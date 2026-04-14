@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiCode, FiCpu, FiGlobe, FiShield, FiArrowRight, FiTerminal } from "react-icons/fi";
 import gsap from 'gsap';
+import Footer from "../components/layout/Footer";
+
 
 const WebDevPage = () => {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ const WebDevPage = () => {
               Clean <br /> 
               <span className="text-white/20">Code.</span>
             </h1>
-            <p className="dev-reveal text-gray-500 text-lg md:text-xl leading-relaxed">
+            <p className="dev-reveal text-white-500 text-lg md:text-xl leading-relaxed">
               We don't just build websites; we engineer high-performance digital engines. Every line of code is written for speed, SEO, and long-term scalability.
             </p>
           </div>
@@ -80,7 +82,7 @@ const WebDevPage = () => {
                 {item.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 uppercase italic tracking-tight">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed group-hover:text-gray-300 transition-colors">
+              <p className="text-white-500 leading-relaxed group-hover:text-white-300 transition-colors">
                 {item.desc}
               </p>
             </div>
@@ -97,7 +99,7 @@ const WebDevPage = () => {
               </div>
               <div className="grid grid-cols-2 gap-y-6 gap-x-12">
                 {["React / Next.js", "Node.js / Express", "PostgreSQL / Mongo", "AWS / Vercel", "API Architecture", "Performance SEO"].map((tech, idx) => (
-                  <div key={idx} className="flex items-center gap-4 text-gray-400 group cursor-default">
+                  <div key={idx} className="flex items-center gap-4 text-white-400 group cursor-default">
                     <span className="w-1.5 h-1.5 bg-[#7CFC00] rounded-full group-hover:scale-150 transition-transform" />
                     <span className="text-sm font-bold uppercase tracking-widest group-hover:text-white transition-colors">{tech}</span>
                   </div>
@@ -107,7 +109,7 @@ const WebDevPage = () => {
             <div className="flex-1 w-full md:w-auto">
                 <div className="bg-black/50 p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
                    <div className="flex justify-between items-center mb-8">
-                      <span className="text-xs font-mono text-gray-500">Lighthouse Report</span>
+                      <span className="text-xs font-mono text-white-500">Lighthouse Report</span>
                       <span className="text-[#7CFC00] text-xs font-mono italic">Efficiency: 100%</span>
                    </div>
                    <div className="space-y-6">
@@ -145,6 +147,7 @@ const WebDevPage = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

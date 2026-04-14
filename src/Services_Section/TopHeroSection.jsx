@@ -37,7 +37,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mb-4 lg:mb-6">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white-900 dark:text-white leading-tight mb-4 lg:mb-6">
               Digital <br /> 
               <span className="relative text-purple-600">
                 Solution
@@ -46,8 +46,8 @@ const HeroSection = () => {
             </h1>
             
             <div className="flex items-start gap-3 max-w-md">
-              <div className="w-12 h-[2px] bg-gray-400 mt-2" />
-              <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed">
+              <div className="w-12 h-[2px] bg-white-400 mt-2" />
+              <p className="text-white-600 dark:text-white-300 text-sm md:text-base leading-relaxed">
                 We design digital experiences that enrich human lives and help grow your business globally.
               </p>
             </div>

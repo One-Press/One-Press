@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiLayout, FiSmartphone, FiMousePointer, FiZap, FiArrowRight } from "react-icons/fi";
 import gsap from 'gsap';
+import Footer from "../components/layout/Footer";
 
 const UIUXPage = () => {
   const navigate = useNavigate();
@@ -45,8 +46,8 @@ const UIUXPage = () => {
             Digital <br /> 
             <span className="text-white/20">Intuition.</span>
           </h1>
-          <p className="uiux-reveal text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl">
-            We bridge the gap between complex functionality and effortless design. Our UI/UX strategy focuses on creating interfaces that users don't just use—they enjoy.
+          <p className="uiux-reveal text-white-500 text-lg md:text-xl leading-relaxed max-w-2xl">
+            We bridge the gap between complex functionality and effortless design. Our UI/UX strategy focuses on creating interfaces that users don't just usethey enjoy.
           </p>
         </header>
 
@@ -73,7 +74,7 @@ const UIUXPage = () => {
                 {item.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 uppercase italic tracking-tight">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed group-hover:text-gray-300 transition-colors">
+              <p className="text-white-500 leading-relaxed group-hover:text-white-300 transition-colors">
                 {item.desc}
               </p>
             </div>
@@ -86,7 +87,7 @@ const UIUXPage = () => {
             <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter mb-8 leading-none">
               Function <br /> <span className="text-[#7CFC00]">Follows Form.</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-10">
+            <p className="text-white-400 text-lg leading-relaxed mb-10">
               Our design laboratory focuses on psychological triggers that drive user engagement. We analyze heatmaps, user behavior, and industry trends to build layouts that convert.
             </p>
             <ul className="space-y-4">
@@ -103,7 +104,7 @@ const UIUXPage = () => {
              <FiLayout className="text-[12rem] text-white/5" />
              <div className="absolute text-center">
                 <p className="text-[#7CFC00] font-mono text-5xl font-black italic">99%</p>
-                <p className="uppercase text-[10px] tracking-[0.3em] text-gray-500">User Satisfaction</p>
+                <p className="uppercase text-[10px] tracking-[0.3em] text-white-500">User Satisfaction</p>
              </div>
           </div>
         </section>
@@ -123,6 +124,7 @@ const UIUXPage = () => {
           </button>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

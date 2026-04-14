@@ -65,7 +65,7 @@ const AppleProductServices = () => {
             Digital <br /> 
             <span className="text-white/20">Solutions.</span>
           </h1>
-          <p className="service-card text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          <p className="service-card text-white-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             We bridge the gap between imagination and execution. Explore our masterfully crafted services designed to scale your brand.
           </p>
         </header>
@@ -85,7 +85,7 @@ const AppleProductServices = () => {
                 <h3 className="text-2xl font-bold mb-4 uppercase italic tracking-tight">
                   {service.title}
                 </h3>
-                <p className="text-gray-500 leading-relaxed mb-8 group-hover:text-gray-300 transition-colors">
+                <p className="text-white-500 leading-relaxed mb-8 group-hover:text-white-300 transition-colors">
                   {service.desc}
                 </p>
               </div>
@@ -119,7 +119,7 @@ const AppleProductServices = () => {
             <h2 className="text-3xl md:text-5xl font-black uppercase italic tracking-tighter mb-6">
               The <span className="text-[#7CFC00]">Strategy</span> Behind the Success.
             </h2>
-            <p className="text-gray-500 leading-relaxed">
+            <p className="text-white-500 leading-relaxed">
               We don't just provide services; we provide results. Every project is backed by a rigorous strategic process designed to ensure market dominance.
             </p>
           </div>

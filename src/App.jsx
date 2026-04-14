@@ -63,11 +63,11 @@ function AppContent() {
           <Route path="/case-study" element={<CaseStudies />} /> {/* New Route */}
           <Route path="/career" element={<Career />} />
           <Route path="/strategies" element={<StrategiesPage />} />
-          <Route path="/branding" element={<BrandingPage />} />
-          <Route path="/uiux" element={<UIUXPage />} />
-          <Route path="/dev" element={ <WebDevPage /> } />
-          <Route path="/marketing" element={<MarketingPage />} />
-          <Route path="/ecommerce" element={<EcommercePage />} />
+          <Route path="/branding-identy-services" element={<BrandingPage />} />
+          <Route path="/web-design-ui-ux-services" element={<UIUXPage />} />
+          <Route path="/web-development-services" element={ <WebDevPage /> } />
+          <Route path="/seo-digital-marketing-services" element={<MarketingPage />} />
+          <Route path="/ecommerce-website-design-services" element={<EcommercePage />} />
         </Routes>
       </main>
 

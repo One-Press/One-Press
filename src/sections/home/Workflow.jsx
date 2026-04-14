@@ -24,10 +24,10 @@ export default function Workflow() {
             </div>
 
             {/* Content Card */}
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 w-full max-w-[280px]">
+            <div className="bg-white dark:bg-white-800 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 w-full max-w-[280px]">
               <span className="text-xs font-bold text-lime-600 block mb-2">STEP {step.id}</span>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">{step.title}</h3>
-              <p className="text-gray-500 dark:text-gray-300 text-sm leading-relaxed">{step.desc}</p>
+              <h3 className="text-lg font-bold text-white-900 dark:text-white mb-3">{step.title}</h3>
+              <p className="text-white-500 dark:text-white-300 text-sm leading-relaxed">{step.desc}</p>
             </div>
           </div>
         ))}

@@ -20,7 +20,7 @@ export default function AgencyHero() {
 
           {/* Headline */}
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight mb-16 max-w-5xl">
-            We’re a full service creative and digital agency, working globally with largest brands.
+            We’re a Full Service Creative And Digital Agency, Working Globally With Largest Brands.
           </h1>
 
           <div className="flex flex-col md:flex-row items-center gap-12">

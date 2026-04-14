@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
       aria-label="Chat on WhatsApp"
     >
       {/* Tooltip */}
-      <span className="absolute right-16 bg-white text-gray-800 text-sm font-bold px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md whitespace-nowrap pointer-events-none">
+      <span className="absolute right-16 bg-white text-white-800 text-sm font-bold px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md whitespace-nowrap pointer-events-none">
         Chat with us
       </span>
       
