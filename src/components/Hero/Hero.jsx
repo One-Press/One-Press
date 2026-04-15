@@ -123,8 +123,7 @@ export default function Hero() {
       <div className="container mx-auto px-6 relative z-10 pt-32 pb-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           {/* Top Tagline */}
-          <div className="flex items-center gap-3 mb-6 text-xs font-black uppercase tracking-[0.4em] text-[#7CFC00]">
-            Best Digital Marketing Agency in USA
+<div className="flex items-center gap-3 mb-8 text-base font-black uppercase tracking-[0.4em] text-[#7CFC00]">            Digital Marketing Agency in USA
             <span className="animate-pulse">↗</span>
           </div>
           

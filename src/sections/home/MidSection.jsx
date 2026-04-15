@@ -55,7 +55,7 @@ export default function MidSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-16 lg:py-24 -mt-16 bg-white rounded-t-[40px] overflow-hidden"
+      className="relative py-16 lg:py-24  bg-white rounded-t-[40px] overflow-hidden"
     >
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] items-center gap-10 lg:gap-6">
         
@@ -87,7 +87,7 @@ export default function MidSection() {
             Best Digital Marketing Agencies 
             <br className="hidden sm:block" />
             <span className="text-white-400 italic font-serif">
-              Why Choose One Press?
+              Why Choose One Press Solutions?
             </span>
           </h2>
 

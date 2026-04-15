@@ -53,7 +53,7 @@ function Navbar() {
           <Link to="/" className="flex items-center group">
             <div className="relative">
               <img 
-                src="OP-L.png" 
+                src="OP-LOGO.png" 
                 alt="Logo" 
                 className="h-14 md:h-16 w-auto object-contain transition-all duration-500 ease-out group-hover:brightness-125"
               />
