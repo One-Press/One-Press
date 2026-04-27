@@ -3,6 +3,13 @@ import Button from "../components/ui/Button";
 import Footer from "../components/layout/Footer";
 
 export default function ContactPage() {
+
+  const handleSubmit = () => {
+    if (window.fbq) {
+      window.fbq("track", "Lead");
+    }
+  };
+
   return (
     <div className="bg-white min-h-screen pt-32">
       <div className="max-w-7xl mx-auto px-6">
@@ -30,7 +37,7 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-4 text-xl">
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
-                  +92 306 1006767
+                  +1-208-980-0654
                 </p>
                 <p className="hover:text-[#7CFC00] transition-colors cursor-pointer">
                   info@onepresssolutions
@@ -44,11 +51,11 @@ export default function ContactPage() {
 
           {/* FORM */}
           <form
-            action="https://formspree.io/f/xpqorlzv"
-            method="POST"
-            className="space-y-10"
-          >
-            {/* Hidden subject */}
+  action="https://formspree.io/f/xpqorlzv"
+  method="POST"
+  onSubmit={handleSubmit}
+  className="space-y-10"
+>
             <input type="hidden" name="_subject" value="New Contact Message" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -118,7 +125,6 @@ export default function ContactPage() {
               ></textarea>
             </div>
 
-            {/* Submit Button */}
             <div className="pt-10 flex justify-center lg:justify-start">
               <button
                 type="submit"

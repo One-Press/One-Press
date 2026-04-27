@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 
 // Layout Components
 import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer"; // Ensure this path is correct
+// import Footer from "./components/layout/Footer";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 
 // Pages
@@ -12,27 +12,41 @@ import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
 import ServicesPage from "./pages/ServicesPage";
 import ProjectPage from "./pages/ProjectPage";
-import BlogPage from "./pages/Blog"; // Added the Blog page we created
-import CaseStudies from "./pages/CaseStudies"; // New
+import BlogPage from "./pages/Blog";
+import CaseStudies from "./pages/CaseStudies";
 import Career from "./pages/Career";
 import StrategiesPage from "./pages/StrategiesPage";
-import BrandingPage from './pages/BrandingPage';
-import UIUXPage from './pages/UIUXPage';
-import WebDevPage from './pages/WebDevPage';
-import MarketingPage from './pages/MarketingPage';
-import EcommercePage from './pages/EcommercePage';
+import BrandingPage from "./pages/BrandingPage";
+import UIUXPage from "./pages/UIUXPage";
+import WebDevPage from "./pages/WebDevPage";
+import MarketingPage from "./pages/MarketingPage";
+import EcommercePage from "./pages/EcommercePage";
 
 /**
- * ScrollToTop Component
- * Forces the window to the top whenever the URL path changes.
- * Without this, if you click a link in the footer, the next page 
- * will load already scrolled to the bottom.
+ * Scroll to top on route change
  */
 function ScrollToTop() {
   const { pathname } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  return null;
+}
+
+/**
+ * Meta Pixel route tracking
+ */
+function PixelTracker() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (window.fbq) {
+      window.fbq("track", "PageView");
+    }
+  }, [pathname]);
+
   return null;
 }
 
@@ -41,18 +55,16 @@ function AppContent() {
 
   return (
     <>
-      {/* Utility to reset scroll position on navigation */}
       <ScrollToTop />
-      
-      {/* Fixed Layout Elements */}
-      <Navbar />    
+      <PixelTracker />
+
+      <Navbar />
       <WhatsAppButton />
 
-      {/* The 'key' attribute here ensures React performs a clean 
-          re-mount of the page content on every route change, 
-          which is great for GSAP and Framer Motion animations.
-      */}
-      <main key={location.pathname} className="overflow-hidden min-h-screen bg-[#0a0a0a]">
+      <main
+        key={location.pathname}
+        className="overflow-hidden min-h-screen bg-[#0a0a0a]"
+      >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -60,18 +72,23 @@ function AppContent() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectPage />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/case-study" element={<CaseStudies />} /> {/* New Route */}
+          <Route path="/case-study" element={<CaseStudies />} />
           <Route path="/career" element={<Career />} />
           <Route path="/strategies" element={<StrategiesPage />} />
           <Route path="/branding-identy-services" element={<BrandingPage />} />
           <Route path="/web-design-ui-ux-services" element={<UIUXPage />} />
-          <Route path="/web-development-services" element={ <WebDevPage /> } />
-          <Route path="/seo-digital-marketing-services" element={<MarketingPage />} />
-          <Route path="/ecommerce-website-design-services" element={<EcommercePage />} />
+          <Route path="/web-development-services" element={<WebDevPage />} />
+          <Route
+            path="/seo-digital-marketing-services"
+            element={<MarketingPage />}
+          />
+          <Route
+            path="/ecommerce-website-design-services"
+            element={<EcommercePage />}
+          />
         </Routes>
       </main>
 
-      {/* Footer stays at the bottom of every page */}
       {/* <Footer /> */}
     </>
   );

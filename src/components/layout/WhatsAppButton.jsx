@@ -1,14 +1,20 @@
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppButton() {
-  // WhatsApp API requires digits only (no '+' or spaces)
-  const whatsappUrl = "https://wa.me/17086306059"; 
+  const whatsappUrl = "https://wa.me/12089800654";
+
+  const handleClick = () => {
+    if (window.fbq) {
+      window.fbq("track", "Contact");
+    }
+  };
 
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}   // ✅ TRACK CLICK HERE
       className="fixed bottom-6 right-6 z-[9999] bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 hover:bg-[#128C7E] flex items-center justify-center group"
       aria-label="Chat on WhatsApp"
     >
@@ -20,7 +26,7 @@ export default function WhatsAppButton() {
       {/* Icon */}
       <FaWhatsapp size={32} />
       
-      {/* Optional: Subtle Ping Animation to catch eye */}
+      {/* Ping Animation */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-20 animate-ping"></span>
     </a>
   );
