@@ -96,11 +96,41 @@ export default function Footer() {
       </div>
 
       {/* Bottom Footer (Subscription Removed) */}
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex justify-center items-center">
-        <p className="text-[12px] font-medium tracking-wide text-center">
-          © 2022 – 2026 | ALL RIGHTS RESERVED BY <span className="text-white uppercase font-bold">One Press</span>
-        </p>
-      </div>
+      {/* Bottom Footer */}
+<div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/5">
+  
+  <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+    
+    {/* Copyright */}
+    <p className="text-[12px] font-medium tracking-wide text-center md:text-left">
+      © 2022 – 2026 | ALL RIGHTS RESERVED BY{" "}
+      <span className="text-white uppercase font-bold">
+        One Press
+      </span>
+    </p>
+
+    {/* Legal Links */}
+    <div className="flex items-center gap-6 text-sm">
+      
+      <Link
+        to="/privacy-policy"
+        className="hover:text-[#7CFC00] transition-colors duration-300"
+      >
+        Privacy Policy
+      </Link>
+
+      <div className="w-[1px] h-4 bg-gray-700"></div>
+
+      <Link
+        to="/terms-of-service"
+        className="hover:text-[#7CFC00] transition-colors duration-300"
+      >
+        Terms Of Service
+      </Link>
+
+    </div>
+  </div>
+</div>
     </footer>
   );
 }

@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 // Layout Components
 import Navbar from "./components/layout/Navbar";
-// import Footer from "./components/layout/Footer";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 
 // Pages
@@ -21,10 +25,9 @@ import UIUXPage from "./pages/UIUXPage";
 import WebDevPage from "./pages/WebDevPage";
 import MarketingPage from "./pages/MarketingPage";
 import EcommercePage from "./pages/EcommercePage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
-/**
- * Scroll to top on route change
- */
 function ScrollToTop() {
   const { pathname } = useLocation();
 
@@ -35,9 +38,6 @@ function ScrollToTop() {
   return null;
 }
 
-/**
- * Meta Pixel route tracking
- */
 function PixelTracker() {
   const { pathname } = useLocation();
 
@@ -75,21 +75,43 @@ function AppContent() {
           <Route path="/case-study" element={<CaseStudies />} />
           <Route path="/career" element={<Career />} />
           <Route path="/strategies" element={<StrategiesPage />} />
-          <Route path="/branding-identy-services" element={<BrandingPage />} />
-          <Route path="/web-design-ui-ux-services" element={<UIUXPage />} />
-          <Route path="/web-development-services" element={<WebDevPage />} />
+
+          <Route
+            path="/branding-identy-services"
+            element={<BrandingPage />}
+          />
+
+          <Route
+            path="/web-design-ui-ux-services"
+            element={<UIUXPage />}
+          />
+
+          <Route
+            path="/web-development-services"
+            element={<WebDevPage />}
+          />
+
           <Route
             path="/seo-digital-marketing-services"
             element={<MarketingPage />}
           />
+
           <Route
             path="/ecommerce-website-design-services"
             element={<EcommercePage />}
           />
+
+          <Route
+            path="/privacy-policy"
+            element={<PrivacyPolicy />}
+          />
+
+          <Route
+            path="/terms-of-service"
+            element={<TermsOfService />}
+          />
         </Routes>
       </main>
-
-      {/* <Footer /> */}
     </>
   );
 }
