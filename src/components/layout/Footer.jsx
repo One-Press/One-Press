@@ -128,6 +128,13 @@ export default function Footer() {
         Terms Of Service
       </Link>
 
+      <Link
+  to="/data-deletion"
+  className="hover:text-[#7CFC00] transition-colors duration-300"
+>
+  Data Deletion
+</Link>
+
     </div>
   </div>
 </div>

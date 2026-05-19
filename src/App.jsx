@@ -27,6 +27,7 @@ import MarketingPage from "./pages/MarketingPage";
 import EcommercePage from "./pages/EcommercePage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import DataDeletion from "./pages/DataDeletion";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -110,6 +111,11 @@ function AppContent() {
             path="/terms-of-service"
             element={<TermsOfService />}
           />
+          
+          <Route
+  path="/data-deletion"
+  element={<DataDeletion />}
+/>
         </Routes>
       </main>
     </>
